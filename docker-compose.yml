@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  graphite:
+    image: graphiteapp/graphite-statsd:latest
+    container_name: graphite
+    restart: always
+    ports:
+      - "8082:80"      # Graphite Web UI
+      - "2003:2003"    # Carbon line receiver port (TCP)
+      - "2003:2003/udp"# Carbon line receiver port (UDP)
+      - "7002:7002"    # Carbon cache query port
+    volumes:
+      - ./monitoring/graphite/carbon.conf:/opt/graphite/conf/carbon.conf:ro
+    networks:
+      - minikube-net
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_USERS_ALLOW_SIGN_UP=false
+    volumes:
+      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./monitoring/grafana/dashboards:/var/lib/grafana/dashboards:ro
+    depends_on:
+      - graphite
+    networks:
+      - minikube-net
+
+  nagios:
+    image: jasonrivers/nagios:latest
+    container_name: nagios
+    restart: always
+    ports:
+      - "8081:80"
+    environment:
+      - NAGIOSADMIN_USER=nagiosadmin
+      - NAGIOSADMIN_PASSWORD=admin
+    volumes:
+      - ./monitoring/nagios/nagios.cfg:/opt/nagios/etc/nagios.cfg:ro
+      - ./monitoring/nagios/conf.d:/opt/nagios/etc/conf.d:ro
+    networks:
+      - minikube-net
+
+networks:
+  minikube-net:
+    name: minikube
+    external: true

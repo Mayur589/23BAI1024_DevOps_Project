@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - ABC Technologies</title>
+  <meta name="description" content="Reach out to ABC Technologies for DevOps consultations, system integrations, or career opportunities.">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <header>
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        ABC Tech <span class="logo-dot"></span>
+      </a>
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle Menu">&#9776;</button>
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="services.html">Services</a>
+        <a href="careers.html">Careers</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact Us</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <h2 class="section-title">Contact Us</h2>
+      <p style="text-align: center; max-width: 600px; margin: 0 auto 3rem; color: var(--text-muted);">
+        Have questions about our container deployment or monitoring solutions? Get in touch with our engineering support.
+      </p>
+
+      <div class="form-container">
+        <form id="contactForm">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" class="form-control" placeholder="John Doe" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="email">Work Email</label>
+            <input type="email" id="email" class="form-control" placeholder="john@company.com" required>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" class="form-control" placeholder="How can we assist you?" required></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-container">
+      <nav class="footer-links">
+        <a href="about.html">About Us</a>
+        <a href="services.html">Services</a>
+        <a href="careers.html">Careers</a>
+        <a href="contact.html">Contact Us</a>
+      </nav>
+      <p class="copyright">&copy; 2026 ABC Technologies. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+pipeline {
+    agent any
+
+    environment {
+        IMAGE_NAME = 'corporate-website'
+        IMAGE_TAG  = 'latest'
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                echo 'Checking out source code...'
+                // Checked out automatically by Jenkins in multibranch or pipeline setups,
+                // but we print confirmation.
+                sh 'git status'
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                echo 'Building Docker image for corporate website...'
+                sh "docker build -t ${IMAGE_NAME}:${IMAGE_TAG} -f docker/Dockerfile ."
+            }
+        }
+
+        stage('Test Static Assets') {
+            steps {
+                echo 'Validating HTML static files...'
+                sh 'test -f website/index.html'
+                sh 'test -f website/about.html'
+                sh 'test -f website/services.html'
+                sh 'test -f website/careers.html'
+                sh 'test -f website/gallery.html'
+                sh 'test -f website/contact.html'
+                echo 'Static assets check passed!'
+            }
+        }
+
+        stage('Load Image to Minikube') {
+            steps {
+                echo 'Loading Docker image directly into Minikube...'
+                sh "minikube image load ${IMAGE_NAME}:${IMAGE_TAG}"
+            }
+        }
+
+        stage('Deploy to Kubernetes') {
+            steps {
+                echo 'Applying Kubernetes manifests...'
+                sh 'kubectl apply -f k8s/'
+                echo 'Waiting for deployment rollout to complete...'
+                sh 'kubectl rollout status deployment/corporate-website'
+            }
+        }
+
+        stage('Verify Deployment') {
+            steps {
+                echo 'Testing website availability...'
+                script {
+                    def minikubeIp = sh(script: 'minikube ip', returnStdout: true).trim()
+                    if (!minikubeIp) {
+                        minikubeIp = '192.168.49.2'
+                    }
+                    echo "Checking http://${minikubeIp}:30080"
+                    sh "curl -f -I http://${minikubeIp}:30080"
+                }
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Build and automated deployment successful!'
+        }
+        failure {
+            echo 'Pipeline failed. Checking pod status...'
+            sh 'kubectl get pods -l app=corporate-website'
+            sh 'kubectl describe deployment corporate-website'
+        }
+    }
+}

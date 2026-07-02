@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery - ABC Technologies</title>
+  <meta name="description" content="View our architecture designs, monitoring systems, and modern team workflows.">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <header>
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        ABC Tech <span class="logo-dot"></span>
+      </a>
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle Menu">&#9776;</button>
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="services.html">Services</a>
+        <a href="careers.html">Careers</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact Us</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <h2 class="section-title">Visual Gallery</h2>
+      <p style="text-align: center; max-width: 600px; margin: 0 auto 3rem; color: var(--text-muted);">
+        A collection of diagrams and workflows mapping our cloud engineering practices.
+      </p>
+
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <div class="gallery-image-placeholder">
+            <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="10" y="20" width="20" height="20" rx="3" />
+              <rect x="40" y="20" width="20" height="20" rx="3" />
+              <rect x="70" y="20" width="20" height="20" rx="3" />
+              <line x1="30" y1="30" x2="40" y2="30" stroke-dasharray="2,2" />
+              <line x1="60" y1="30" x2="70" y2="30" stroke-dasharray="2,2" />
+              <circle cx="50" cy="70" r="12" />
+              <path d="M50 40 V58" />
+            </svg>
+            <span style="font-weight: 500;">CI/CD Pipeline</span>
+          </div>
+          <div class="gallery-overlay">
+            <h4>Continuous Integration</h4>
+            <p>Automated build, test, and release sequence.</p>
+          </div>
+        </div>
+
+        <div class="gallery-item">
+          <div class="gallery-image-placeholder">
+            <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="50" cy="50" r="30" />
+              <circle cx="35" cy="40" r="6" />
+              <circle cx="65" cy="40" r="6" />
+              <circle cx="50" cy="65" r="6" />
+              <line x1="35" y1="46" x2="44" y2="60" />
+              <line x1="65" y1="46" x2="56" y2="60" />
+              <line x1="39" y1="38" x2="61" y2="38" />
+            </svg>
+            <span style="font-weight: 500;">Kubernetes Mesh</span>
+          </div>
+          <div class="gallery-overlay">
+            <h4>Container Orchestration</h4>
+            <p>High availability, auto-scaling, and pod monitoring.</p>
+          </div>
+        </div>
+
+        <div class="gallery-item">
+          <div class="gallery-image-placeholder">
+            <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="15" y="15" width="70" height="50" rx="4" />
+              <line x1="15" y1="50" x2="85" y2="50" />
+              <path d="M25 40 L40 25 L55 35 L75 20" />
+              <circle cx="25" cy="40" r="2" fill="currentColor" />
+              <circle cx="40" cy="25" r="2" fill="currentColor" />
+              <circle cx="55" cy="35" r="2" fill="currentColor" />
+              <circle cx="75" cy="20" r="2" fill="currentColor" />
+              <line x1="35" y1="80" x2="65" y2="80" stroke-width="3" />
+              <line x1="50" y1="65" x2="50" y2="80" stroke-width="3" />
+            </svg>
+            <span style="font-weight: 500;">Observability Dashboard</span>
+          </div>
+          <div class="gallery-overlay">
+            <h4>Grafana Panels</h4>
+            <p>Real-time analytics for CPU, Memory, and Network usage.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-container">
+      <nav class="footer-links">
+        <a href="about.html">About Us</a>
+        <a href="services.html">Services</a>
+        <a href="careers.html">Careers</a>
+        <a href="contact.html">Contact Us</a>
+      </nav>
+      <p class="copyright">&copy; 2026 ABC Technologies. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
